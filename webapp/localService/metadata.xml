@@ -1,0 +1,113 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="sap.com.cds_zvnsg17_c_quiz" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="Zvnsg17_C_Available_QuestionsType" sap:label="Quiz Available questions" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="quizid"/>
+                    <PropertyRef Name="vraagid"/>
+                </Key>
+                <Property Name="quizid" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="Quiz Id"/>
+                <Property Name="vraagid" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="VraagId"/>
+                <Property Name="actief" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Actief"/>
+                <NavigationProperty Name="to_quiz" Relationship="sap.com.cds_zvnsg17_c_quiz.assoc_2E68B7F6FFB811D655F7BBD950E35B52" FromRole="FromRole_assoc_2E68B7F6FFB811D655F7BBD950E35B52" ToRole="ToRole_assoc_2E68B7F6FFB811D655F7BBD950E35B52" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Zvnsg17_C_QuizType" sap:label="VNSG 2017 - Quiz" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="quizid"/>
+                </Key>
+                <Property Name="quizid" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="Quiz Id" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="quiznaam" Type="Edm.String" MaxLength="40" sap:label="Long Text"/>
+                <Property Name="actief" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Actief"/>
+                <Property Name="datum" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date"/>
+                <NavigationProperty Name="to_available_questions" Relationship="sap.com.cds_zvnsg17_c_quiz.assoc_0288EE11D8A8B7AFC2733D5736ECF743" FromRole="FromRole_assoc_0288EE11D8A8B7AFC2733D5736ECF743" ToRole="ToRole_assoc_0288EE11D8A8B7AFC2733D5736ECF743" sap:filterable="false"/>
+                <NavigationProperty Name="to_questions" Relationship="sap.com.cds_zvnsg17_c_quiz.assoc_DEBB9E071CB23E369794A63FB6D51230" FromRole="FromRole_assoc_DEBB9E071CB23E369794A63FB6D51230" ToRole="ToRole_assoc_DEBB9E071CB23E369794A63FB6D51230" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Zvnsg17_C_Quiz_QuestionsType" sap:label="VNSG 2017 - Quiz Questions" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="quizid"/>
+                    <PropertyRef Name="vraagid"/>
+                </Key>
+                <Property Name="actief" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Actief"/>
+                <Property Name="vraag_kort" Type="Edm.String" MaxLength="100" sap:label="Korte vraag" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="quizid" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="Quiz Id" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="vraagid" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="VraagId"/>
+                <NavigationProperty Name="to_quiz" Relationship="sap.com.cds_zvnsg17_c_quiz.assoc_54D97E0BE1A2F0A4BCCA2A8FD1738BBE" FromRole="FromRole_assoc_54D97E0BE1A2F0A4BCCA2A8FD1738BBE" ToRole="ToRole_assoc_54D97E0BE1A2F0A4BCCA2A8FD1738BBE" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="assoc_2E68B7F6FFB811D655F7BBD950E35B52" sap:content-version="1">
+                <End Type="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_Available_QuestionsType" Multiplicity="1" Role="FromRole_assoc_2E68B7F6FFB811D655F7BBD950E35B52"/>
+                <End Type="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_QuizType" Multiplicity="0..1" Role="ToRole_assoc_2E68B7F6FFB811D655F7BBD950E35B52"/>
+            </Association>
+            <Association Name="assoc_54D97E0BE1A2F0A4BCCA2A8FD1738BBE" sap:content-version="1">
+                <End Type="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_Quiz_QuestionsType" Multiplicity="1" Role="FromRole_assoc_54D97E0BE1A2F0A4BCCA2A8FD1738BBE"/>
+                <End Type="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_QuizType" Multiplicity="0..1" Role="ToRole_assoc_54D97E0BE1A2F0A4BCCA2A8FD1738BBE"/>
+            </Association>
+            <Association Name="assoc_0288EE11D8A8B7AFC2733D5736ECF743" sap:content-version="1">
+                <End Type="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_QuizType" Multiplicity="1" Role="FromRole_assoc_0288EE11D8A8B7AFC2733D5736ECF743"/>
+                <End Type="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_Available_QuestionsType" Multiplicity="*" Role="ToRole_assoc_0288EE11D8A8B7AFC2733D5736ECF743"/>
+            </Association>
+            <Association Name="assoc_DEBB9E071CB23E369794A63FB6D51230" sap:content-version="1">
+                <End Type="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_QuizType" Multiplicity="1" Role="FromRole_assoc_DEBB9E071CB23E369794A63FB6D51230"/>
+                <End Type="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_Quiz_QuestionsType" Multiplicity="*" Role="ToRole_assoc_DEBB9E071CB23E369794A63FB6D51230"/>
+            </Association>
+            <EntityContainer Name="sap.com.cds_zvnsg17_c_quiz_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Zvnsg17_C_Quiz" EntityType="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_QuizType" sap:content-version="1"/>
+                <EntitySet Name="Zvnsg17_C_Quiz_Questions" EntityType="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_Quiz_QuestionsType" sap:updatable="false" sap:content-version="1"/>
+                <EntitySet Name="Zvnsg17_C_Available_Questions" EntityType="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_Available_QuestionsType" sap:creatable="false" sap:updatable="false" sap:deletable="true" sap:content-version="1"/>
+                <AssociationSet Name="assoc_0288EE11D8A8B7AFC2733D5736ECF743" Association="sap.com.cds_zvnsg17_c_quiz.assoc_0288EE11D8A8B7AFC2733D5736ECF743" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Zvnsg17_C_Quiz" Role="FromRole_assoc_0288EE11D8A8B7AFC2733D5736ECF743"/>
+                    <End EntitySet="Zvnsg17_C_Available_Questions" Role="ToRole_assoc_0288EE11D8A8B7AFC2733D5736ECF743"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_2E68B7F6FFB811D655F7BBD950E35B52" Association="sap.com.cds_zvnsg17_c_quiz.assoc_2E68B7F6FFB811D655F7BBD950E35B52" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Zvnsg17_C_Available_Questions" Role="FromRole_assoc_2E68B7F6FFB811D655F7BBD950E35B52"/>
+                    <End EntitySet="Zvnsg17_C_Quiz" Role="ToRole_assoc_2E68B7F6FFB811D655F7BBD950E35B52"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_DEBB9E071CB23E369794A63FB6D51230" Association="sap.com.cds_zvnsg17_c_quiz.assoc_DEBB9E071CB23E369794A63FB6D51230" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Zvnsg17_C_Quiz" Role="FromRole_assoc_DEBB9E071CB23E369794A63FB6D51230"/>
+                    <End EntitySet="Zvnsg17_C_Quiz_Questions" Role="ToRole_assoc_DEBB9E071CB23E369794A63FB6D51230"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_54D97E0BE1A2F0A4BCCA2A8FD1738BBE" Association="sap.com.cds_zvnsg17_c_quiz.assoc_54D97E0BE1A2F0A4BCCA2A8FD1738BBE" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Zvnsg17_C_Quiz_Questions" Role="FromRole_assoc_54D97E0BE1A2F0A4BCCA2A8FD1738BBE"/>
+                    <End EntitySet="Zvnsg17_C_Quiz" Role="ToRole_assoc_54D97E0BE1A2F0A4BCCA2A8FD1738BBE"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_Available_QuestionsType">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>quizid</PropertyPath>
+                        <PropertyPath>vraagid</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_QuizType">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>quizid</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="sap.com.cds_zvnsg17_c_quiz.Zvnsg17_C_Quiz_QuestionsType">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>quizid</PropertyPath>
+                        <PropertyPath>vraagid</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZVNSG17_C_QUIZ_CDS/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZVNSG17_C_QUIZ_CDS/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

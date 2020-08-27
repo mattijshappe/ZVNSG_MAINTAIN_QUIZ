@@ -1,0 +1,36 @@
+{
+    "application": {
+        "id": "",
+        "title": "ZVNSG_MAINTAIN_QUIZ.ZVNSG_MAINTAIN_QUIZ",
+        "description": "Maintain Quiz",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#ZVNSG_MAINTAIN_QUIZ-Display",
+        "navigationComponentName": "ZVNSG_MAINTAIN_QUIZ",
+        "intentSemanticObject": "ZVNSG_MAINTAIN_QUIZ",
+        "intentAction": "Display",
+        "html5ApplicationName": "zvnsgmaintainquiz",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "70598002-fe43-4a57-9524-b32ea143246e-1487190280492"
+        ],
+        "contentPackages": [
+            "3dc51a30-eb80-42c4-8947-6880d3460c20-1487190244899"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "DynamicTile",
+        "title": "Maintain Quiz",
+        "subtitle": "Subtitle",
+        "searchKeywords": "Maintain Quiz,Subtitle",
+        "displayIconUrl": "sap-icon://approvals",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "/sap/fiori/zvnsgmaintainquiz/sap/opu/odata/sap/ZVNSG17_C_QUIZ_CDS/Zvnsg17_C_Quiz/$count",
+        "refreshInterval": "60",
+        "displayNumberUnit": ""
+    }
+}
